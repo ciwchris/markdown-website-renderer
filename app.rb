@@ -5,7 +5,7 @@ require 'git'
 
 class MarkdownRenderer
 	def initialize ()
-		@content = []
+		@content = {}
 		renderer = Redcarpet::Render::HTML.new(:no_links => true, :hard_wrap => true)
 		@markdown = Redcarpet::Markdown.new(renderer)
 		@g = Git.open('.')
@@ -23,7 +23,8 @@ class MarkdownRenderer
 	def render_markdown_files(tree)
 		tree.files.keys.each do |f|
 			if (f.end_with?('.md'))
-				@content.push(@markdown.render(@g.cat_file(tree.files[f].to_s)))
+				key = create_key_from(f)
+				@content[key] = @markdown.render(@g.cat_file(tree.files[f].to_s))
 			end
 		end
 	end
@@ -36,8 +37,13 @@ class MarkdownRenderer
 			search_directories(subtree)
 		end
 	end
+
+	def create_key_from(key)
+		key.sub(/\.md/, '').sub(/[-_]/, ' ').capitalize
+	end
 end
 
 get '/' do
-	MarkdownRenderer.new.start_search
+	content = MarkdownRenderer.new.start_search
+	erb :index, :locals => { :content => content }
 end

@@ -12,7 +12,7 @@ class MarkdownRenderer
 	end
 
 	def start_search
-		tree = @g.gtree('Setup')
+		tree = @g.gtree('master')
 		render_markdown_files(tree)
 		search_directories(tree)
 		@content

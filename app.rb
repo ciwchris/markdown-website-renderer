@@ -8,7 +8,7 @@ class MarkdownRenderer
 		@content = {}
 		renderer = Redcarpet::Render::HTML.new(:no_links => true, :hard_wrap => true)
 		@markdown = Redcarpet::Markdown.new(renderer)
-		@g = Git.open('..')
+		@g = Git.open('git@heroku.com:glowing-waterfall-8567.git')
 	end
 
 	def start_search

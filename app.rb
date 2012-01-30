@@ -39,7 +39,7 @@ class MarkdownRenderer
 	end
 
 	def create_key_from(key)
-		key.sub(/\.md/, '').sub(/[-_]/, ' ').capitalize
+		key.sub(/\.md$/, '').gsub(/[-_]/, ' ').capitalize
 	end
 end
 

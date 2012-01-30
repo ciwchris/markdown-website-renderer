@@ -14,7 +14,7 @@ class MarkdownRenderer
 		tree = @g.gtree('Setup')
 		render_markdown_files(tree)
 		search_directories(tree)
-		@content.sort_by {|item| item.key}
+		@content
 	end
 
 	private

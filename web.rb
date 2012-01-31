@@ -11,7 +11,7 @@ class MarkdownRenderer
 	end
 
 	def start_search
-		Dir['**/*.md'].each {|fileName|
+		Dir['markdown/**/*.md'].each {|fileName|
 			name = create_tab_name_from(fileName)
 			file = File.open(fileName)
 			@content[name] = @markdown.render(file.read)

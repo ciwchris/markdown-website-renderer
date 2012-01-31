@@ -12,7 +12,7 @@ To make immediate use of this project one only needs to execute the following co
 
 `$ git clone git://github.com/ciwchris/markdown-website-renderer.git mywebsite`  
 `$ cd mywebsite`  
-`$ heroku create mywebsite`  
+`$ heroku create --stack cedar mywebsite`  
 `$ git push heroku master`  
 `$ heroku open`  
 
